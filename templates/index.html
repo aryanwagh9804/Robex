@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta charset="UTF-8">
+<title>Smart Robot Control</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+<div class="app">
+
+  <div class="card">
+    <h2>🤖 Smart Robot</h2>
+  </div>
+
+  <div class="card">
+    <h3>📷 Live Camera</h3>
+    <div class="camera">
+      <img src="/camera" id="cam">
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🕹 Movement</h3>
+    <div class="pad">
+      <div></div>
+      <button class="ctrl-btn" onclick="cmd('forward')">⬆️</button>
+      <div></div>
+
+      <button class="ctrl-btn" onclick="cmd('left')">⬅️</button>
+      <button class="ctrl-btn" onclick="cmd('stop')">⏹️</button>
+      <button class="ctrl-btn" onclick="cmd('right')">➡️</button>
+
+      <div></div>
+      <button class="ctrl-btn" onclick="cmd('backward')">⬇️</button>
+      <div></div>
+    </div>
+  </div>
+  <div class="card">
+  <h3>🦾 Head / Neck Control</h3>
+
+  <input
+    type="range"
+    min="0"
+    max="180"
+    value="90"
+    id="neckSlider"
+    style="width:100%"
+    oninput="setNeck(this.value)"
+  />
+  <div id="neckVal" style="margin-top:8px;text-align:center;">
+    Angle: 90°
+  </div>
+</div>
+  <div class="card">
+    <h3>🎤 Voice Control</h3>
+    <button class="mic-btn" id="micBtn" onclick="startMic()">Speak Command</button>
+    <div id="status">Ready</div>
+  </div>
+<div class="card">
+  <h3>🧑‍🎓 Attendance System</h3>
+
+  <button class="att-btn off" id="attToggle" onclick="toggleAttendance()">
+    ❌ Attendance OFF
+  </button>
+
+  <div id="registerBox" style="display:none; margin-top:14px;">
+    <input id="studentName" placeholder="Student Name"
+           style="width:100%;padding:12px;border-radius:12px;border:none;">
+    <button class="att-btn reg" onclick="registerStudent()"
+            style="margin-top:10px;">
+      ➕ Register Student
+    </button>
+  </div>
+
+  <div id="attStatus" style="margin-top:10px;font-size:14px;opacity:.9;">
+    Attendance system is disabled
+  </div>
+</div>   
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
